@@ -1,0 +1,28 @@
+.dialog{
+margin-bottom: 20px ;
+display: flex;
+justify-content: flex-end;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+}
+.id{
+    width: 5%;
+}
+.name{
+    width: 15%;
+}
+.depcription{
+    width: 25%;
+}
+.price{
+    width: 10%;
+}
+.image{
+    width: 30%;
+}
+.action{
+    display: flex;
+    width: 15%;
+}

@@ -1,0 +1,8 @@
+.link{
+    display: flex;
+    justify-content: flex-end;
+    &.navlink{
+text-decoration: none;
+color: black;
+    }
+}
