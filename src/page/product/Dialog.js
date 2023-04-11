@@ -47,9 +47,14 @@ export default function FullScreenDialog(props) {
     });
   };
   const handleClickOpen = () => {
+    setAdd({
+      name: "",
+      depcription: "",
+      price: "",
+      image: "",
+    });
     setOpen(true);
   };
-  console.log(props.dataEdit);
   const handleClose = () => {
     props.cb(false);
     setOpen(false);
@@ -83,7 +88,6 @@ export default function FullScreenDialog(props) {
         price: "",
         image: "",
       });
-      props.cb(false);
     } else {
       updateProduct(props.dataEdit.id, {
         name: data.get("name"),
@@ -91,14 +95,12 @@ export default function FullScreenDialog(props) {
         price: data.get("price"),
         image: data.get("image"),
       });
-      setOpen(false);
       setAdd({
         name: "",
         depcription: "",
         price: "",
         image: "",
       });
-      props.cb(false);
     }
   };
   return (
