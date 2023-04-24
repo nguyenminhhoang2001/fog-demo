@@ -1,0 +1,13 @@
+{
+  "sign up": "Sign up",
+  "name": "Full name",
+  "email": "Email Address",
+  "password": "Password",
+  "confirm password": "Confirm password",
+  "link": "Already have an account? Sign in",
+  "validateEmail": "Enter your email",
+  "@gmail": "Email must have an extension like @gmail.com",
+  "validatePasswordMin": "should be 6 chars minimum ",
+  "validatePassword": "Enter Your password",
+  "fullname": "Enter your fullname"
+}

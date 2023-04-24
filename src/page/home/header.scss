@@ -1,0 +1,41 @@
+.product{
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 25px;
+}
+.menu {
+  
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+}
+.menufooter {
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+}
+.menufooterMB {
+    height: 50px;
+    line-height: 50px;
+    list-style: none;
+
+}
+.menufooterMB li {
+   cursor: pointer;
+}
+.link{
+    color: black;
+    text-decoration: none;
+}
+
+.menufooter li:hover{
+    border-bottom: 1px solid black;}
+.menu li:hover{
+border-bottom: 1px solid black;}
+.avatar{
+    display: flex;
+    justify-content: flex-end;
+}

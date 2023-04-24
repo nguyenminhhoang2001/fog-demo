@@ -1,14 +1,6 @@
 {
   "account": [
     {
-      "id": 1,
-      "name": "minhhoang",
-      "email": "minkhwang2001@gmail.com",
-      "password": "0123456Hb",
-      "role": "admin",
-      "avata": ""
-    },
-    {
       "id": 7,
       "name": "minhhoang",
       "email": "minkhwang2001@gmail.com",
@@ -31,94 +23,121 @@
       "password": "0123456Hb",
       "role": "admin",
       "avata": ""
-    },
-    {
-      "id": 10,
-      "name": "minhhoang",
-      "email": "minkhwang2001@gmail.com",
-      "password": "0123456Hb",
-      "role": "admin",
-      "avata": ""
-    },
-    {
-      "id": 11,
-      "name": "minhhoang",
-      "email": "minkhwang2001@gmail.com",
-      "password": "0123456Hb",
-      "role": "admin",
-      "avata": ""
     }
   ],
   "product": [
     {
-      "nameProduct": "product11111",
-      "price": "asda",
-      "linkImg": "adasd",
-      "content": "asdasda",
-      "id": 17
+      "name": "FEAR OF GOD Wool Overcoat",
+      "depcription": "fog",
+      "price": 700000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/FGE30-012MEL_ETERNAL_WOOL_OVERCOAT_BLACK_HEATHER-Front3_x1800.jpg?v=1670181782",
+      "id": 1
     },
     {
-      "nameProduct": "asdas",
-      "price": "dasdas",
-      "linkImg": "dasd",
-      "content": "asdad",
-      "id": 18
+      "name": "FEAR OF GOD Wool Lapelless Jacket",
+      "depcription": "fog",
+      "price": 700000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/FGE60-010GRB_ETERNAL_WOOL_LAPELLESS_JACKET_BLACK-Front_x1800.jpg?v=1669779990",
+      "id": 2
     },
     {
-      "nameProduct": "asdasd",
-      "price": "asdasd",
-      "linkImg": "sadad",
-      "content": "sadasd",
-      "id": 19
+      "name": "FEAR OF GOD Wool Suit Pant",
+      "depcription": "fog",
+      "price": 350000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/FGE40-011GRB_ETERNAL_WOOL_SUIT_PANT_BLACK-Front_x1800.jpg?v=1669779979",
+      "id": 3
     },
     {
-      "nameProduct": "asdsa",
-      "price": "asda",
-      "linkImg": "dasdad",
-      "content": "asdasda",
-      "id": 20
+      "name": "FEAR OF GOD Cummerbund Suede",
+      "depcription": "fog",
+      "price": 200000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/FGE70-226SUE_ETERNAL_CUMMERBUND_BLACK-FGE70-226SUE_ETERNAL_CUMMERBUND_BLACK_2_x1800.jpg?v=1670266922",
+      "id": 4
     },
     {
-      "nameProduct": "product11111",
-      "price": "asdasd",
-      "linkImg": "dsadasd",
-      "content": "asdada",
-      "id": 21
+      "name": "FEAR OF GOD Newspaper Bag",
+      "depcription": "fog",
+      "price": 700000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/1copy_867dbecb-a1ab-4027-b6e6-2bbcead58695_x1800.jpg?v=1670288960",
+      "id": 5
     },
     {
-      "nameProduct": "asdas",
-      "price": "dasds",
-      "linkImg": "adada",
-      "content": "dsada",
-      "id": 22
+      "name": "FEAR OF GOD Newspaper Bag",
+      "depcription": "fog",
+      "price": 700000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/FGE70-004FLT_ETERNAL_NEWSPAPER_BAG_BLACK-1_x1800.jpg?v=1669779931",
+      "id": 6
     },
     {
-      "nameProduct": "asdas",
-      "price": "dasdad",
-      "linkImg": "asdasds",
-      "content": "sadasd",
-      "id": 23
+      "name": "FEAR OF GOD Cowboy Boot",
+      "depcription": "fog",
+      "price": 1000000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/FGE81-200FLT_ETERNAL_COWBOY_BOOT_BLACK_1_x1800.jpg?v=1669835907",
+      "id": 7
     },
     {
-      "name": "1231",
-      "depcription": "2312",
-      "price": "12312",
-      "image": "1231",
-      "id": 24
+      "name": "FEAR OF GOD Cowboy Boot",
+      "depcription": "fog",
+      "price": 1000000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/FGE81-200FLT_ETERNAL_COWBOY_BOOT_GREIGE_1_x1800.jpg?v=1669834772",
+      "id": 8
+    },
+
+    {
+      "name": "ESSENTIALS Essentials SS Tee",
+      "depcription": "ESSENTIALS",
+      "price": 350000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/192BT222093F-RelaxedHoodie-SEAL-FLEECE_1_360x.jpg?v=1680138157",
+      "id": 9
     },
     {
-      "name": "123",
-      "depcription": "123213",
-      "price": "12313",
-      "image": "1231",
-      "id": 25
+      "name": "ESSENTIALS Essentials Crewneck Sweatshirt",
+      "depcription": "ESSENTIALS",
+      "price": 500000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/192BT222043F_20Essentials_20Crewneck_20Sweatshirt_20SEAL_20FLEECE_1_360x.jpg?v=1677539918",
+      "id": 10
     },
     {
-      "name": "asda111111111",
-      "depcription": "sdasd",
-      "price": "asdasd",
-      "image": "asdas",
-      "id": 26
+      "name": "ESSENTIALS Essentials Fullzip Jacket",
+      "depcription": "ESSENTIALS",
+      "price": 500000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/202BT224243F_20Fullzip_20Hoodie_20SEAL_20FLEECE_1_360x.jpg?v=1676601162",
+      "id": 11
+    },
+    {
+      "name": "ESSENTIALS Essentials Sweatshort",
+      "depcription": "ESSENTIALS",
+      "price": 350000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/160BT222003F_20Essentials_20Shorts_20SEAL_20FLEECE_1_360x.jpg?v=1677539912",
+      "id": 12
+    },
+    {
+      "name": "ESSENTIALS Womens Waffle Tank",
+      "depcription": "ESSENTIALS",
+      "price": 300000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/192BT225194FW_20Tank_20Top_20SAND_20HEAVY_20WAFFLE_1_360x.jpg?v=1677794357",
+      "id": 13
+    },
+    {
+      "name": "ESSENTIALS Womens Long Skirt",
+      "depcription": "ESSENTIALS",
+      "price": 250000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/160BT225004FWLongSkirtSANDJERSEY_1_360x.jpg?v=1680138161",
+      "id": 14
+    },
+    {
+      "name": "ESSENTIALS Womens Cotton Dock Short",
+      "depcription": "ESSENTIALS",
+      "price": 350000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/125BT225024FWWomen_sEssentialTeeSANDJERSEY_12_360x.jpg?v=1680670386",
+      "id": 15
+    },
+    {
+      "name": "ESSENTIALS Womens Cotton Dock Short",
+      "depcription": "ESSENTIALS",
+      "price": 250000,
+      "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/160BT225154FWDockShortSANDCOTTONWOVEN_1_360x.jpg?v=1680138150",
+      "id": 16
     }
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "Sign in": "Đăng nhập",
+  "email": "Địa chỉ Email",
+  "password": "Mật khẩu",
+  "register": "Không có  tài khoản? Đăng ký",
+  "language": "Ngôn ngữ",
+  "validateEmail": "Nhập email của bạn",
+  "validatePasswordMin": "Mật khẩu quá ngắn - tối thiểu phải có 6 ký tự ",
+  "validatePassword": "Nhập mật khẩu của bạn"
+}

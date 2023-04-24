@@ -17,6 +17,11 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import CustomizedSnackbars from "../manager/AlertAdd";
+import { useTranslation } from "react-i18next";
+
 export default function Product() {
   const [data, setData] = React.useState();
   const [pageData, setPageData] = React.useState([]);
@@ -24,10 +29,16 @@ export default function Product() {
   const [dataEdit, setDataEdit] = React.useState();
   const [openEdit, setOpenEdit] = React.useState(false);
   const [onDelete, setOnDelete] = React.useState(false);
+  const [add, setAdd] = React.useState(false);
+  const [openDialog, setOpenDialog] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [id, setId] = React.useState();
+  const { t } = useTranslation();
+
   React.useEffect(() => {
     getAll();
     getByPage();
-  }, [page, onDelete]);
+  }, [page, onDelete, add]);
   const getAll = async () => {
     let res = await ProductApi.getAllProduct();
     setData(res);
@@ -36,53 +47,77 @@ export default function Product() {
     let res = await ProductApi.getProductByPage(page);
     setPageData(res);
   };
-  const deleteProduct = async (id) => {
+  const deleteProduct = async () => {
     let res = await ProductApi.deleteProduct(id);
+    setOpenDialog(false);
     setOnDelete(!onDelete);
+    handleClick();
   };
   const onEdit = (id) => {
     const arr = data.filter((i) => i.id == id);
     setDataEdit(arr[0]);
     setOpenEdit(!openEdit);
   };
-  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+
+  const handleClickClose = () => {
+    setOpenDialog(false);
+  };
+  const cb = () => {
+    setOpenEdit(false);
+  };
+  const cbAdd = (value) => {
+    setAdd(value);
+  };
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const handleClick = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
     setOpen(false);
-  };
-  const cb = (value) => {
-    setOpenEdit(value);
   };
   return (
     <>
       <div className="dialog">
-        <FullScreenDialog openEdit={openEdit} dataEdit={dataEdit} cb={cb} />
+        <FullScreenDialog
+          openEdit={openEdit}
+          dataEdit={dataEdit}
+          cb={cb}
+          cbAdd={cbAdd}
+        />
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell className="id" align="left">
-                id
+                Id
               </TableCell>
               <TableCell className="name" align="left">
-                Name Product
+                {t("nameProduct")}
               </TableCell>
               <TableCell className="depcription" align="left">
-                Depcription
+                {t("depcription")}
               </TableCell>
               <TableCell className="price" align="left">
-                Price
+                {t("price")}
               </TableCell>
               <TableCell className="image" align="left">
-                Image
+                {t("image")}
               </TableCell>
               <TableCell className="action" align="left">
-                Action
+                {t("action")}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -110,7 +145,7 @@ export default function Product() {
                         onEdit(item.id);
                       }}
                     >
-                      Edit
+                      {t("edit")}
                     </Button>
                     <div style={{ display: "flex" }}>
                       <Button
@@ -120,33 +155,42 @@ export default function Product() {
                           border: "1px solid black",
                         }}
                         variant="outlined"
-                        onClick={handleClickOpen}
+                        onClick={() => {
+                          handleClickOpen();
+                          setId(item.id);
+                        }}
                       >
-                        Delete
+                        {t("delete")}
                       </Button>
                       <Dialog
-                        open={open}
-                        onClose={handleClose}
+                        open={openDialog}
+                        onClose={handleClickClose}
                         aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description"
                       >
                         <DialogTitle id="alert-dialog-title">
-                          {"Delete account"}
+                          {t("Delete product")}
                         </DialogTitle>
                         <DialogContent>
                           <DialogContentText id="alert-dialog-description">
-                            Are you sure you want to delete this account?
+                            {t("textDeleteProduct")}
                           </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                          <Button onClick={handleClose}>Disagree</Button>
                           <Button
+                            sx={{ color: "black", border: "1px solid black" }}
+                            onClick={handleClickClose}
+                          >
+                            {t("Disagree")}
+                          </Button>
+                          <Button
+                            sx={{ color: "black", border: "1px solid black" }}
                             onClick={() => {
-                              deleteProduct(item.id);
+                              deleteProduct();
                             }}
                             autoFocus
                           >
-                            Agree
+                            {t("Agree")}
                           </Button>
                         </DialogActions>
                       </Dialog>
@@ -169,6 +213,18 @@ export default function Product() {
           />
         </Stack>
       </div>
+      <Stack spacing={2} sx={{ width: "100%" }}>
+        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            {t("Delete successfully")}
+          </Alert>
+        </Snackbar>
+      </Stack>
+      {add == true && <CustomizedSnackbars cbAdd={cbAdd} />}
     </>
   );
 }

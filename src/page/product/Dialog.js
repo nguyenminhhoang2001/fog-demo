@@ -14,14 +14,19 @@ import Slide from "@mui/material/Slide";
 import "./product.scss";
 import { Box, TextField } from "@mui/material";
 import { ProductApi } from "../../API/productApi";
+import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { accountApi } from "../../API/accountApi";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function FullScreenDialog(props) {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
-  const [changeText, setChangeText] = React.useState("Add Product");
-  const [reRender, setReRender] = React.useState(false);
+  const [changeText, setChangeText] = React.useState(t("addProduct"));
   const [add, setAdd] = React.useState({
     name: "",
     depcription: "",
@@ -32,11 +37,24 @@ export default function FullScreenDialog(props) {
     toggle();
     edit();
   }, [props.openEdit]);
+  const schema = yup
+    .object({
+      name: yup.string().required(t("validateName")),
+      depcription: yup.string().required(t("validateDepcription")),
+      price: yup.string().required(t("validatePrice")),
+      image: yup.string().required(t("validateImage")),
+    })
+    .required();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
   const toggle = () => {
     props.openEdit == false ? setOpen(false) : setOpen(true);
     props.openEdit == false
-      ? setChangeText("Add Product")
-      : setChangeText("Update Product");
+      ? setChangeText(t("addProduct"))
+      : setChangeText(t("updateProduct"));
   };
   const edit = () => {
     setAdd({
@@ -56,7 +74,7 @@ export default function FullScreenDialog(props) {
     setOpen(true);
   };
   const handleClose = () => {
-    props.cb(false);
+    props.cb();
     setOpen(false);
     setAdd({
       name: "",
@@ -71,15 +89,14 @@ export default function FullScreenDialog(props) {
   const updateProduct = async (id, params) => {
     let res = await ProductApi.updateProduct(id, params);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+
+  const onSubmit = (data) => {
     if (props.openEdit == false) {
       addProduct({
-        name: data.get("name"),
-        depcription: data.get("depcription"),
-        price: data.get("price"),
-        image: data.get("image"),
+        name: data.name,
+        depcription: data.depcription,
+        price: data.price,
+        image: data.image,
       });
       setOpen(false);
       setAdd({
@@ -88,12 +105,14 @@ export default function FullScreenDialog(props) {
         price: "",
         image: "",
       });
+      props.cb();
+      props.cbAdd(true);
     } else {
       updateProduct(props.dataEdit.id, {
-        name: data.get("name"),
-        depcription: data.get("depcription"),
-        price: data.get("price"),
-        image: data.get("image"),
+        name: data.name,
+        depcription: data.depcription,
+        price: data.price,
+        image: data.image,
       });
       setAdd({
         name: "",
@@ -101,6 +120,9 @@ export default function FullScreenDialog(props) {
         price: "",
         image: "",
       });
+      setOpen(false);
+      props.cb();
+      props.cbAdd(true);
     }
   };
   return (
@@ -109,9 +131,10 @@ export default function FullScreenDialog(props) {
         sx={{ color: "black", border: "1px solid black" }}
         onClick={handleClickOpen}
       >
-        Add Product
+        {t("addProduct")}
       </Button>
       <Dialog
+        sx={{ opacity: 1 }}
         fullScreen
         open={open}
         onClose={handleClose}
@@ -136,7 +159,7 @@ export default function FullScreenDialog(props) {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             sx={{ mt: 1 }}
           >
             <TextField
@@ -145,10 +168,15 @@ export default function FullScreenDialog(props) {
               fullWidth
               defaultValue={add.name}
               id="name"
-              label="Name Product"
+              label={t("nameProduct")}
               name="name"
               autoComplete="name"
               autoFocus
+              {...register("name", {
+                required: true,
+              })}
+              error={!!errors.name?.type}
+              helperText={errors.name?.message}
             />
             <TextField
               margin="normal"
@@ -156,9 +184,14 @@ export default function FullScreenDialog(props) {
               fullWidth
               defaultValue={add.depcription}
               name="depcription"
-              label="Depcription"
+              label={t("depcription")}
               id="depcription"
               autoComplete="depcription"
+              {...register("depcription", {
+                required: true,
+              })}
+              error={!!errors.depcription?.type}
+              helperText={errors.depcription?.message}
             />
             <TextField
               margin="normal"
@@ -166,10 +199,16 @@ export default function FullScreenDialog(props) {
               fullWidth
               defaultValue={add.price}
               id="price"
-              label="Price"
+              label={t("price")}
+              type="number"
               name="price"
               autoComplete="price"
               autoFocus
+              {...register("price", {
+                required: true,
+              })}
+              error={!!errors.price?.type}
+              helperText={errors.price?.message}
             />
             <TextField
               margin="normal"
@@ -177,10 +216,15 @@ export default function FullScreenDialog(props) {
               fullWidth
               defaultValue={add.image}
               id="image"
-              label="Image"
+              label={t("image")}
               name="image"
               autoComplete="image"
               autoFocus
+              {...register("image", {
+                required: true,
+              })}
+              error={!!errors.image?.type}
+              helperText={errors.image?.message}
             />
 
             <div className="btn">

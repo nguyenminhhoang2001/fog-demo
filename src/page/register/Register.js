@@ -9,26 +9,39 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NavLink } from "react-router-dom";
-import { useRef } from "react";
-
+import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useState } from "react";
 const theme = createTheme();
 export default function Register() {
-  const formRef = useRef();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    formRef.current.reportValidity();
-    if (data.get("password") == data.get("confirmPassword")) {
-      console.log({
-        email: data.get("email"),
-        password: data.get("password"),
-        confirmPassword: data.get("confirmPassword"),
-        name: data.get("name"),
-      });
-    }
+  const { t } = useTranslation(["register"]);
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const schema = yup
+    .object({
+      name: yup.string().required(t("fullname")),
+      email: yup
+        .string()
+        .required(t("validateEmail"))
+        .matches(emailRegex, t("@gmail")),
+      password: yup
+        .string()
+        .required(t("validatePassword"))
+        .min(6, t("validatePasswordMin")),
+    })
+    .required();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+  const onSubmit = (data) => {
+    const arr = { ...data, role: "user", avata: "" };
+    console.log(arr);
   };
 
+  console.log(errors);
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -45,25 +58,28 @@ export default function Register() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            {t("sign up")}
           </Typography>
           <Box
-            ref={formRef}
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  value={"alo"}
                   required
                   fullWidth
                   id="name"
-                  label="input your name"
+                  label={t("name")}
                   name="name"
+                  {...register("name", {
+                    required: true,
+                  })}
                   autoComplete="name"
+                  error={!!errors?.name?.type}
+                  helperText={errors?.name?.message}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -71,9 +87,14 @@ export default function Register() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label={t("email")}
+                  {...register("email", {
+                    required: true,
+                  })}
                   name="email"
                   autoComplete="email"
+                  error={!!errors?.email?.type}
+                  helperText={errors?.email?.message}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -81,20 +102,15 @@ export default function Register() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label={t("password")}
+                  {...register("password", {
+                    required: true,
+                  })}
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="confirmPassword"
-                  label="confirm yor password"
-                  type="password"
-                  autoComplete="new-password"
+                  error={!!errors?.password?.type}
+                  helperText={errors?.password?.message}
                 />
               </Grid>
             </Grid>
@@ -105,11 +121,11 @@ export default function Register() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              {t("sign up")}
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <NavLink to="/login">Already have an account? Sign in</NavLink>
+                <NavLink to="/login">{t("link")}</NavLink>
               </Grid>
             </Grid>
           </Box>

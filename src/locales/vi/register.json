@@ -1,0 +1,13 @@
+{
+  "sign up": "Đăng ký",
+  "name": "Họ và tên",
+  "email": "Địa chỉ email",
+  "password": "Mật khẩu",
+  "confirm password": "Xác nhận mật khẩu",
+  "link": "Bạn đã có sẵn tài khoản? Đăng nhập",
+  "validateEmail": "Nhập email của bạn",
+  "@gmail": "email phải có đuôi ví dụ như @gmail.com",
+  "validatePasswordMin": "Mật khẩu quá ngắn - tối thiểu phải có 6 ký tự ",
+  "validatePassword": "Nhập mật khẩu của bạn",
+  "fullname": "Nhập vào họ và tên của bạn "
+}

@@ -16,13 +16,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { Outlet } from "react-router-dom";
 import { Link as LinkRouter } from "react-router-dom";
 import "/Users/Admin/Desktop/workspace/vti/react vti/e-commerce-app/src/page/manager/manager.scss";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import { useTranslation } from "react-i18next";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -91,6 +90,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Manager() {
+  const { t } = useTranslation();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -124,7 +124,7 @@ export default function Manager() {
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             <LinkRouter to="/" className="linkh6">
-              Trang chủ
+              {t("Home page")}
             </LinkRouter>
           </Typography>
         </Toolbar>

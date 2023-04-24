@@ -1,0 +1,10 @@
+{
+  "Sign in": "Sign in",
+  "email": "Email Address",
+  "password": "Password",
+  "register": "Don't have an account? Sign Up",
+  "language": "Language",
+  "validateEmail": "Enter your email",
+  "validatePasswordMin": "should be 6 chars minimum ",
+  "validatePassword": "Enter your password"
+}

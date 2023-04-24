@@ -8,7 +8,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { accountApi } from "../../API/accountApi";
 import { Alert, Button, Pagination, Stack } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -21,6 +20,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useTranslation } from "react-i18next";
+
 import "./account.scss";
 export default function Account() {
   const [page, setPage] = React.useState(1);
@@ -30,7 +31,8 @@ export default function Account() {
   const [open, setOpen] = React.useState(false);
   const [role, setRole] = React.useState(true);
   const [data, setData] = React.useState([]);
-
+  const [id, setId] = React.useState();
+  const { t } = useTranslation();
   React.useEffect(() => {
     getAll();
     getByPage();
@@ -43,7 +45,7 @@ export default function Account() {
     let res = await accountApi.getAccountByPage(page);
     setPageData(res);
   };
-  const deleteAccount = async (id) => {
+  const deleteAccount = async () => {
     let res = await accountApi.deleteAccount(id);
     setDeleteAcc(!deleteAcc);
     setOpenDialog(false);
@@ -84,25 +86,25 @@ export default function Account() {
           <TableHead>
             <TableRow>
               <TableCell className="id" align="left">
-                id
+                Id
               </TableCell>
               <TableCell className="name" align="left">
-                name
+                {t("name")}
               </TableCell>
               <TableCell className="email" align="left">
-                email
+                Email
               </TableCell>
               <TableCell className="password" align="left">
-                password
+                {t("password")}
               </TableCell>
               <TableCell className="role" align="left">
-                role
+                {t("role")}
               </TableCell>
               <TableCell className="avata" align="left">
-                avata
+                {t("avata")}
               </TableCell>
               <TableCell className="action" align="left">
-                action
+                {t("action")}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -143,23 +145,27 @@ export default function Account() {
                     <Button
                       sx={{ color: "black", border: "1px solid black" }}
                       variant="text"
-                      onClick={handleClickOpen}
+                      onClick={() => {
+                        handleClickOpen();
+                        setId(account.id);
+                      }}
                       size="small"
                     >
-                      Delete
+                      {t("delete")}
                     </Button>
                     <Dialog
+                      sx={{ opacity: 1 }}
                       open={openDialog}
                       onClose={handleClose}
                       aria-labelledby="alert-dialog-title"
                       aria-describedby="alert-dialog-description"
                     >
                       <DialogTitle id="alert-dialog-title">
-                        {"Delete account"}
+                        {t("Delete account")}
                       </DialogTitle>
                       <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                          Are you sure you want to delete this account?
+                          {t("textDeleteAccount")}
                         </DialogContentText>
                       </DialogContent>
                       <DialogActions>
@@ -167,16 +173,16 @@ export default function Account() {
                           sx={{ color: "black", border: "1px solid black" }}
                           onClick={handleClose}
                         >
-                          Disagree
+                          {t("Disagree")}
                         </Button>
                         <Button
                           sx={{ color: "black", border: "1px solid black" }}
                           onClick={() => {
-                            deleteAccount(account.id);
+                            deleteAccount();
                           }}
                           autoFocus
                         >
-                          Agree
+                          {t("Agree")}
                         </Button>
                       </DialogActions>
                     </Dialog>
@@ -209,7 +215,7 @@ export default function Account() {
             severity="success"
             sx={{ width: "100%" }}
           >
-            delete successfully
+            {t("Delete successfully")}
           </Alert>
         </Snackbar>
       </Stack>

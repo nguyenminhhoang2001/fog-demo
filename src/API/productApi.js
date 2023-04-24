@@ -9,6 +9,14 @@ export const ProductApi = {
     const url = `product?_page=${page}&_limit=10`;
     return AxiosClient.get(url);
   },
+  getByPage(page) {
+    const url = `product?_page=${page}&_limit=8`;
+    return AxiosClient.get(url);
+  },
+  getByPageMobile(page) {
+    const url = `product?_page=${page}&_limit=4`;
+    return AxiosClient.get(url);
+  },
   getProductById(id) {
     const url = `product/${id}`;
     return AxiosClient.get(url);
