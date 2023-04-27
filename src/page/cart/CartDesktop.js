@@ -7,6 +7,11 @@ import { decre, deleteProduct, incre } from "../../featue/redux/cartSlice";
 const CartDesktop = () => {
   const dispatch = useDispatch();
   const { item, totalPrice } = useSelector((state) => state.cart);
+  const [mode, setMode] = React.useState("");
+  React.useEffect(() => {
+    const mode = localStorage.getItem("mode");
+    mode == "" ? setMode("black") : setMode("white");
+  }, []);
   return (
     <div>
       {item.map((item) => (
@@ -19,7 +24,7 @@ const CartDesktop = () => {
               ></img>
             </Grid>
             <Grid item xs={3}>
-              <div style={{ marginTop: "230px" }}>
+              <div style={{ marginTop: "230px", color: mode }}>
                 <div>{item.name}</div>
                 <div style={{ color: "red" }}>
                   {item.price.toLocaleString("vi", {
@@ -45,12 +50,12 @@ const CartDesktop = () => {
                     dispatch(decre(item));
                   }}
                   size="small"
-                  sx={{ color: "black", border: "1px solid black" }}
+                  sx={{ color: { mode }, border: `1px solid ${mode}` }}
                 >
                   -
                 </Button>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={4} sx={{ color: mode }}>
                 {item.quantity}
               </Grid>
               <Grid item xs={4}>
@@ -59,7 +64,7 @@ const CartDesktop = () => {
                     dispatch(incre(item));
                   }}
                   size="small"
-                  sx={{ color: "black", border: "1px solid black" }}
+                  sx={{ color: { mode }, border: `1px solid ${mode}` }}
                 >
                   +
                 </Button>
@@ -68,13 +73,13 @@ const CartDesktop = () => {
             <Grid
               item
               xs={3}
-              sx={{ color: "black", height: "500px", lineHeight: "500px" }}
+              sx={{ color: { mode }, height: "500px", lineHeight: "500px" }}
             >
               <Button
                 onClick={() => {
                   dispatch(deleteProduct(item));
                 }}
-                sx={{ color: "black", border: "1px solid black" }}
+                sx={{ color: { mode }, border: `1px solid ${mode}` }}
                 size="small"
               >
                 Remove
@@ -83,7 +88,14 @@ const CartDesktop = () => {
           </Grid>
         </Box>
       ))}
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          color: mode,
+          marginRight: "20px",
+        }}
+      >
         <p>{`thành tiền:${totalPrice.toLocaleString("vi", {
           style: "currency",
           currency: "VND",

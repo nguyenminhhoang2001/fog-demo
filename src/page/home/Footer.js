@@ -5,20 +5,22 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import "./header.scss";
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import "./footer.scss";
+import { useSelector } from "react-redux";
 
 export default function Footer(props) {
+  const [mode, setMode] = React.useState("");
+  const { change } = useSelector((state) => state.mode);
+
+  React.useEffect(() => {
+    const mode = localStorage.getItem("mode");
+    setMode(mode);
+  }, [change]);
   return (
     <>
       {props.size.with > 768 ? (
-        <div style={{ height: "50px", marginTop: "20px" }}>
-          <Box sx={{ flexGrow: 1 }}>
+        <div style={{ height: "30px", marginTop: "12px" }}>
+          <Box sx={{ flexGrow: 1 }} className={`footer ${mode}`}>
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <Box

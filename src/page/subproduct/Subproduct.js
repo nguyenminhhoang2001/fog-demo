@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ProductApi } from "../../API/productApi";
 import Box from "@mui/material/Box";
@@ -12,13 +12,27 @@ import Button from "@mui/material/Button";
 import useResize from "../../hooks/useResize";
 import { useDispatch } from "react-redux";
 import { buyProduct } from "../../featue/redux/cartSlice";
+import "./subproduct.scss";
 const Subproduct = () => {
   const [data, setData] = React.useState();
+  const [mode, setMode] = React.useState();
+  const [color, setColor] = React.useState("");
+
   const dispatch = useDispatch();
   const size = useResize();
   React.useEffect(() => {
+    getMode();
     getAll();
   }, []);
+  const getMode = () => {
+    const mode = localStorage.getItem("mode");
+    setMode(mode);
+    handleChangeColor(mode);
+  };
+  const handleChangeColor = (mode) => {
+    mode == "dark" ? setColor("white") : setColor("black");
+  };
+
   const getAll = async () => {
     let res = await ProductApi.getAllProduct();
     setData(res);
@@ -42,7 +56,7 @@ const Subproduct = () => {
                 src={item?.image}
               ></img>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={4} className={`name ${mode}`}>
               <p>{item?.name}</p>
               <p style={{ color: "red", fontSize: "25px" }}>
                 {item?.price.toLocaleString("vi", {
@@ -58,6 +72,7 @@ const Subproduct = () => {
                         Color
                       </InputLabel>
                       <Select
+                        sx={{ border: `1px solid ${color}`, color: { color } }}
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={age}
@@ -81,6 +96,7 @@ const Subproduct = () => {
                         Size
                       </InputLabel>
                       <Select
+                        sx={{ border: `1px solid ${color}`, color: { color } }}
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={age}
@@ -103,10 +119,11 @@ const Subproduct = () => {
                   onClick={() => {
                     dispatch(buyProduct(item));
                   }}
+                  className={`btn ${mode}`}
                   sx={{
                     height: "60px",
-                    color: "black",
-                    border: "1px solid black",
+                    color: { color },
+                    border: `1px solid ${color}`,
                     width: "100%",
                   }}
                   variant="text"

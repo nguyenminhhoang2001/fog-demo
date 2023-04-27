@@ -26,11 +26,11 @@ export const accountApi = {
     return AxiosClient.delete(url);
   },
   Login(params) {
-    const url = "login/account";
+    const url = "account/login";
     return AxiosClient.post(url, { params });
   },
   register(params) {
-    const url = "register";
+    const url = "account/register";
     return AxiosClient.post(url, params);
   },
 };

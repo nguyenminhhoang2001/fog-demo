@@ -8,9 +8,17 @@ import { Button, IconButton, Menu, MenuItem } from "@mui/material";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
+
 export default function BasicGrid() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mode, setMode] = React.useState("");
+  const { change } = useSelector((state) => state.mode);
+
+  React.useEffect(() => {
+    const mode = localStorage.getItem("mode");
+    setMode(mode);
+  }, [change]);
   const navigate = useNavigate();
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,11 +27,10 @@ export default function BasicGrid() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   return (
     <Box
+      className={`header ${mode}`}
       sx={{
-        backgroundColor: "white",
         flexGrow: 1,
         height: "50px",
         display: "flex",
@@ -89,8 +96,27 @@ export default function BasicGrid() {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>Manager</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("manager");
+                    }}
+                  >
+                    Manager
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("setting");
+                    }}
+                  >
+                    Setting
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("login");
+                    }}
+                  >
+                    Logout
+                  </MenuItem>
                 </Menu>
               </div>
             )}

@@ -1,3 +1,16 @@
+.header{
+    background-color: white;
+    &.dark{
+        background-color: gray;
+    }
+}
+.headerMb{flexGrow: 1;
+    height: "50px";
+    display: "flex"; 
+    background-color: white;
+    &.dark{
+        background-color: gray;
+    }}
 .product{
     color: black;
     text-decoration: none;

@@ -43,18 +43,14 @@ export default function Login() {
     .required();
 
   const theme = createTheme();
-  const [language, setLanguage] = React.useState("vi");
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const handleChange = (event) => {
-    setLanguage(event.target.value);
-    i18n.changeLanguage(event.target.value);
-  };
+
   const onSubmit = (data) => {
-    // login(data);
+    login(data);
     console.log(data);
   };
   const login = async (account) => {
@@ -71,7 +67,8 @@ export default function Login() {
             sm={4}
             md={7}
             sx={{
-              backgroundImage: "url(https://source.unsplash.com/random)",
+              backgroundImage:
+                "url(https://hips.hearstapps.com/hmg-prod/images/fearofgod-1649795282.jpg)",
               backgroundRepeat: "no-repeat",
               backgroundColor: (t) =>
                 t.palette.mode === "light"
@@ -90,32 +87,6 @@ export default function Login() {
             elevation={6}
             square
           >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                margin: 10,
-              }}
-            >
-              <Box sx={{ width: 200 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    {t("language")}
-                  </InputLabel>
-                  <Select
-                    size="small"
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={language}
-                    label={t("language")}
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={"vi"}>vi</MenuItem>
-                    <MenuItem value={"en"}>en</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </div>
             <Box
               sx={{
                 my: 8,

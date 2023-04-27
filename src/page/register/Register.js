@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
+import { accountApi } from "../../API/accountApi";
 const theme = createTheme();
 export default function Register() {
   const { t } = useTranslation(["register"]);
@@ -38,9 +39,11 @@ export default function Register() {
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = (data) => {
     const arr = { ...data, role: "user", avata: "" };
-    console.log(arr);
+    SignUp(arr);
   };
-
+  const SignUp = async (account) => {
+    let res = await accountApi.register(account);
+  };
   console.log(errors);
   return (
     <ThemeProvider theme={theme}>

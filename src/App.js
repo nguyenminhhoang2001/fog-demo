@@ -9,6 +9,7 @@ import Product from "./page/product/Product";
 import Subproduct from "./page/subproduct/Subproduct";
 import Showproduct from "./page/showproduct/Showproduct";
 import Cart from "./page/cart/Cart";
+import Setting from "./page/setting/Setting";
 function App() {
   const router = createBrowserRouter([
     {
@@ -19,6 +20,7 @@ function App() {
         { index: true, element: <Showproduct /> },
         { path: "profile", element: <Subproduct /> },
         { path: "cart", element: <Cart /> },
+        { path: "setting", element: <Setting /> },
       ],
     },
     {
