@@ -18,7 +18,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Outlet } from "react-router-dom";
 import { Link as LinkRouter } from "react-router-dom";
-import "/Users/Admin/Desktop/workspace/vti/react vti/e-commerce-app/src/page/manager/manager.scss";
+import "./manager.scss";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { useTranslation } from "react-i18next";
