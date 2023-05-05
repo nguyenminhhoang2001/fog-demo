@@ -3,22 +3,15 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./login.scss";
 import { useTranslation } from "react-i18next";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -26,7 +19,7 @@ import { accountApi } from "../../API/accountApi";
 
 export default function Login() {
   const { t, i18n } = useTranslation(["login"]);
-
+  const navigate = useNavigate();
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const schema = yup
     .object({
@@ -51,10 +44,15 @@ export default function Login() {
 
   const onSubmit = (data) => {
     login(data);
-    console.log(data);
   };
-  const login = async (account) => {
-    let res = await accountApi.Login(account);
+  const login = async (data) => {
+    try {
+      let res = await accountApi.Login(data);
+      localStorage.setItem("account", JSON.stringify(res));
+      navigate("/");
+    } catch (error) {
+      console.log("sai");
+    }
   };
   return (
     <>

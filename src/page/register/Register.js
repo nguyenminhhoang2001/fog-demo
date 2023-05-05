@@ -8,7 +8,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,6 +18,7 @@ import { accountApi } from "../../API/accountApi";
 const theme = createTheme();
 export default function Register() {
   const { t } = useTranslation(["register"]);
+  const navigate = useNavigate();
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const schema = yup
     .object({
@@ -42,7 +43,10 @@ export default function Register() {
     SignUp(arr);
   };
   const SignUp = async (account) => {
-    let res = await accountApi.register(account);
+    try {
+      let res = await accountApi.register(account);
+      navigate("/login");
+    } catch (error) {}
   };
   console.log(errors);
   return (

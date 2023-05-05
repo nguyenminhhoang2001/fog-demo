@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ProductApi } from "../../API/productApi";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -17,13 +17,16 @@ const Subproduct = () => {
   const [data, setData] = React.useState();
   const [mode, setMode] = React.useState();
   const [color, setColor] = React.useState("");
-
+  const [account, setAccount] = React.useState();
   const dispatch = useDispatch();
   const size = useResize();
   React.useEffect(() => {
     getMode();
     getAll();
+    const obj = JSON.parse(localStorage.getItem("account"));
+    setAccount(obj == null ? true : false);
   }, []);
+  const navigate = useNavigate();
   const getMode = () => {
     const mode = localStorage.getItem("mode");
     setMode(mode);
@@ -117,7 +120,9 @@ const Subproduct = () => {
               <Stack spacing={2} direction="row" sx={{ marginTop: "40px" }}>
                 <Button
                   onClick={() => {
-                    dispatch(buyProduct(item));
+                    account == true
+                      ? navigate("/login")
+                      : dispatch(buyProduct(item));
                   }}
                   className={`btn ${mode}`}
                   sx={{
@@ -192,7 +197,9 @@ const Subproduct = () => {
           <Stack spacing={2} direction="row" sx={{ marginTop: "40px" }}>
             <Button
               onClick={() => {
-                dispatch(buyProduct(item));
+                account == true
+                  ? navigate("/login")
+                  : dispatch(buyProduct(item));
               }}
               sx={{
                 height: "60px",

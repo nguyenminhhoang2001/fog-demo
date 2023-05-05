@@ -1,28 +1,28 @@
 {
-  "account": [
+  "users": [
     {
-      "id": 7,
-      "name": "minhhoang",
-      "email": "minkhwang2001@gmail.com",
-      "password": "0123456Hb",
-      "role": "user",
-      "avata": ""
-    },
-    {
-      "id": 8,
-      "name": "minhhoang",
-      "email": "minkhwang2001@gmail.com",
-      "password": "0123456Hb",
-      "role": "user",
-      "avata": ""
-    },
-    {
-      "id": 9,
-      "name": "minhhoang",
-      "email": "minkhwang2001@gmail.com",
-      "password": "0123456Hb",
+      "email": "minkhwang20102001@gmail.com",
+      "password": "$2a$10$L51Z4Zx///jlpGuIwJSOb.h4WffpjKqp2vjhy1yV.ZkglBbzq3DZy",
+      "name": "Nguyễn Minh Hoàng",
       "role": "admin",
-      "avata": ""
+      "avata": "",
+      "id": 2
+    },
+    {
+      "email": "minkhwang2@gmail.com",
+      "password": "$2a$10$Dz2aV7lPd7VgNOwtPk7Re.RTUllNcbMFkC3FcsvDPQMMj0md4lyjW",
+      "name": "Nguyễn Minh Hoàng",
+      "role": "user",
+      "avata": "",
+      "id": 3
+    },
+    {
+      "email": "minkhwang@gmail.com",
+      "password": "$2a$10$6By.vZr0H7dG/W3fJrsFp.kvt630O15wg2BFVhBdr9valW6tjX7au",
+      "name": "Nguyễn Minh Hoàng",
+      "role": "user",
+      "avata": "",
+      "id": 4
     }
   ],
   "product": [
@@ -82,7 +82,6 @@
       "image": "https://cdn.shopify.com/s/files/1/1003/3354/products/FGE81-200FLT_ETERNAL_COWBOY_BOOT_GREIGE_1_x1800.jpg?v=1669834772",
       "id": 8
     },
-
     {
       "name": "ESSENTIALS Essentials SS Tee",
       "depcription": "ESSENTIALS",

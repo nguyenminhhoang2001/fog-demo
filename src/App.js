@@ -10,6 +10,7 @@ import Subproduct from "./page/subproduct/Subproduct";
 import Showproduct from "./page/showproduct/Showproduct";
 import Cart from "./page/cart/Cart";
 import Setting from "./page/setting/Setting";
+import Profile from "./page/profile/Profile";
 function App() {
   const router = createBrowserRouter([
     {
@@ -18,7 +19,7 @@ function App() {
       children: [
         { path: "/:id", element: <Subproduct /> },
         { index: true, element: <Showproduct /> },
-        { path: "profile", element: <Subproduct /> },
+        { path: "profile", element: <Profile /> },
         { path: "cart", element: <Cart /> },
         { path: "setting", element: <Setting /> },
       ],

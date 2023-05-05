@@ -22,11 +22,16 @@ import { useSelector } from "react-redux";
 const HeaderMobile = () => {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [role, setRole] = React.useState("");
   const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
+  });
+  React.useEffect(() => {
+    const obj = JSON.parse(localStorage.getItem("account"));
+    setRole(obj?.user?.role);
   });
   const a = useSelector((state) => state.cart);
   const navigate = useNavigate();
@@ -152,9 +157,39 @@ const HeaderMobile = () => {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>Manager</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  {role && (
+                    <MenuItem
+                      onClick={() => {
+                        navigate("profile");
+                      }}
+                    >
+                      Profile
+                    </MenuItem>
+                  )}
+                  {role == "admin" && (
+                    <MenuItem
+                      onClick={() => {
+                        navigate("manager");
+                      }}
+                    >
+                      Manager
+                    </MenuItem>
+                  )}
+                  <MenuItem
+                    onClick={() => {
+                      navigate("setting");
+                    }}
+                  >
+                    Setting
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("login");
+                      localStorage.removeItem("account");
+                    }}
+                  >
+                    {role ? "Logout" : "Login"}
+                  </MenuItem>
                 </Menu>
               </div>
             )}

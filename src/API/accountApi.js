@@ -2,35 +2,35 @@ import AxiosClient from "./axiosClient";
 
 export const accountApi = {
   getAllAccount(params) {
-    const url = "account";
+    const url = "users";
     return AxiosClient.get(url, { params });
   },
   getAccountById(id) {
-    const url = `account/${id}`;
+    const url = `users/${id}`;
     return AxiosClient.get(url);
   },
   getAccountByPage(page) {
-    const url = `account?_page=${page}&_limit=10`;
+    const url = `users?_page=${page}&_limit=10`;
     return AxiosClient.get(url);
   },
   updatePassword(id, params) {
-    const url = `account/${id}`;
+    const url = `users/${id}`;
     return AxiosClient.put(url, params);
   },
   updateRole(id, params) {
-    const url = `account/${id}`;
+    const url = `users/${id}`;
     return AxiosClient.put(url, params);
   },
   deleteAccount(id) {
-    const url = `account/${id}`;
+    const url = `users/${id}`;
     return AxiosClient.delete(url);
   },
-  Login(params) {
-    const url = "account/login";
-    return AxiosClient.post(url, { params });
+  Login({ email, password }) {
+    const url = "login";
+    return AxiosClient.post(url, { email, password });
   },
   register(params) {
-    const url = "account/register";
+    const url = "register";
     return AxiosClient.post(url, params);
   },
 };

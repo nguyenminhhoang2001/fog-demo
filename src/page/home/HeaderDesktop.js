@@ -13,11 +13,15 @@ export default function BasicGrid() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mode, setMode] = React.useState("");
+  const [role, setRole] = React.useState("");
+
   const { change } = useSelector((state) => state.mode);
 
   React.useEffect(() => {
     const mode = localStorage.getItem("mode");
     setMode(mode);
+    const obj = JSON.parse(localStorage.getItem("account"));
+    setRole(obj?.user?.role);
   }, [change]);
   const navigate = useNavigate();
   const handleMenu = (event) => {
@@ -95,14 +99,24 @@ export default function BasicGrid() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      navigate("manager");
-                    }}
-                  >
-                    Manager
-                  </MenuItem>
+                  {role && (
+                    <MenuItem
+                      onClick={() => {
+                        navigate("profile");
+                      }}
+                    >
+                      Profile
+                    </MenuItem>
+                  )}
+                  {role == "admin" && (
+                    <MenuItem
+                      onClick={() => {
+                        navigate("manager");
+                      }}
+                    >
+                      Manager
+                    </MenuItem>
+                  )}
                   <MenuItem
                     onClick={() => {
                       navigate("setting");
@@ -113,9 +127,10 @@ export default function BasicGrid() {
                   <MenuItem
                     onClick={() => {
                       navigate("login");
+                      localStorage.removeItem("account");
                     }}
                   >
-                    Logout
+                    {role ? "Logout" : "Login"}
                   </MenuItem>
                 </Menu>
               </div>

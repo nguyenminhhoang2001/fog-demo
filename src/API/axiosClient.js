@@ -1,7 +1,6 @@
 import axios from "axios";
 const AxiosClient = axios.create({
   baseURL: "http://localhost:3000/",
-  headers: { "X-Custom-Header": "foobar" },
 });
 // Add a request interceptor
 AxiosClient.interceptors.request.use(
