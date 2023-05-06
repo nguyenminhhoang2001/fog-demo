@@ -6,12 +6,21 @@ import Grid from "@mui/material/Grid";
 import "./profile.scss";
 const Profile = () => {
   const [user, setUser] = React.useState();
+  const users = {
+    email: "guest",
+    name: "guest",
+    role: "admin",
+    avata:
+      "https://thumbs.dreamstime.com/b/guest-avatar-vector-illustration-default-male-profile-icon-image-profile-guest-avatar-vector-illustration-default-male-profile-182095612.jpg",
+  };
+
   React.useEffect(() => {
     getData();
   }, []);
   const getData = () => {
     const obj = JSON.parse(localStorage.getItem("account"));
-    setUser(obj?.user);
+    console.log(obj);
+    obj == undefined ? setUser(users) : setUser(obj?.user);
   };
   console.log(user);
   return (

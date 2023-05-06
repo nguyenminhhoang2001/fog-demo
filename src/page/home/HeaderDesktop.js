@@ -99,7 +99,7 @@ export default function BasicGrid() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  {role && (
+                  {
                     <MenuItem
                       onClick={() => {
                         navigate("profile");
@@ -107,8 +107,8 @@ export default function BasicGrid() {
                     >
                       Profile
                     </MenuItem>
-                  )}
-                  {role == "admin" && (
+                  }
+                  {
                     <MenuItem
                       onClick={() => {
                         navigate("manager");
@@ -116,7 +116,7 @@ export default function BasicGrid() {
                     >
                       Manager
                     </MenuItem>
-                  )}
+                  }
                   <MenuItem
                     onClick={() => {
                       navigate("setting");

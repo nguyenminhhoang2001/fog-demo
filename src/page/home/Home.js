@@ -7,6 +7,7 @@ import HeaderMobile from "./HeaderMobile";
 import Footer from "./Footer";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+
 const Home = () => {
   const { change } = useSelector((state) => state.mode);
 

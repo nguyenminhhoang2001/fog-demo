@@ -157,7 +157,7 @@ const HeaderMobile = () => {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  {role && (
+                  {
                     <MenuItem
                       onClick={() => {
                         navigate("profile");
@@ -165,8 +165,8 @@ const HeaderMobile = () => {
                     >
                       Profile
                     </MenuItem>
-                  )}
-                  {role == "admin" && (
+                  }
+                  {
                     <MenuItem
                       onClick={() => {
                         navigate("manager");
@@ -174,7 +174,7 @@ const HeaderMobile = () => {
                     >
                       Manager
                     </MenuItem>
-                  )}
+                  }
                   <MenuItem
                     onClick={() => {
                       navigate("setting");
