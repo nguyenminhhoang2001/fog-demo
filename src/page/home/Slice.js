@@ -7,10 +7,12 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 const arr = [
   {
-    image: "https://wallpaper.dog/large/1007600.jpg",
+    image:
+      "https://c0.wallpaperflare.com/preview/887/755/625/greyscale-photography-of-person.jpg",
   },
   {
-    image: "https://wallpaper.dog/large/1007776.jpg",
+    image:
+      "https://images.complex.com/complex/images/c_fill,dpr_auto,f_auto,q_auto,w_1400/fl_lossy,pg_1/iwonsgljelulg4pu9t7x/fog?fimg-ssr-default",
   },
   {
     image:

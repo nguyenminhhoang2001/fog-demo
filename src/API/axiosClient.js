@@ -1,6 +1,6 @@
 import axios from "axios";
 const AxiosClient = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: "https://api-fog.vercel.app/",
 });
 // Add a request interceptor
 AxiosClient.interceptors.request.use(
