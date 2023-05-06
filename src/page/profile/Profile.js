@@ -23,7 +23,6 @@ const Profile = () => {
     console.log(obj);
     obj == undefined ? setUser(users) : setUser(obj?.user);
   };
-  console.log(size);
   return (
     <>
       {size.with > 768 ? (
